@@ -21,17 +21,17 @@ import java.util.Scanner;
  *
  * @author rapha
  */
-public class CriptografiaEscrita {
+public class CriptografiaEscrita {//classe de criptografia e escrita em arquivo
     public CriptografiaEscrita(){}
     
-    public static String Criptografa(String senha){
+    public static String Criptografa(String senha){//função de criptografia(assinatura para login)
         String senha_criptografada="";
         try{
-        MessageDigest criptografia= MessageDigest.getInstance("SHA-256");
-        byte messageDigest[]=criptografia.digest(senha.getBytes("UTF-8"));
+        MessageDigest criptografia= MessageDigest.getInstance("SHA-256");//variável que armazena a mensagem digerida
+        byte messageDigest[]=criptografia.digest(senha.getBytes("UTF-8"));//conversão para UTF-8
         StringBuilder hexStringSenha = new StringBuilder();
         for (byte b : messageDigest) {
-              hexStringSenha.append(String.format("%02X", 0xFF & b));
+              hexStringSenha.append(String.format("%02X", 0xFF & b));//construção da senha criptografada
         }
         senha_criptografada = hexStringSenha.toString();
         }
@@ -41,7 +41,7 @@ public class CriptografiaEscrita {
         return senha_criptografada;
     }
     
-    public static void Salva(SenhasRune senhas){
+    public static void Salva(SenhasRune senhas){//salva alterações no arquivo texto
         try{
             File arquivo = new File("C:\\Users\\rapha\\OneDrive\\Documents\\Testes\\Cripto\\Arquivo de armazenamento de senhas");
             FileWriter fw;
@@ -50,7 +50,7 @@ public class CriptografiaEscrita {
             bw= new BufferedWriter(fw);
             String senha;
             for(int i=0;i<senhas.getNumSenhas();i++){
-                senha=Criptografa(senhas.getNomeInd(i),senhas.getSenhaInd(i));
+                senha=Criptografa(senhas.getNomeInd(i),senhas.getSenhaInd(i));//passagem da string para string criptografada
                 bw.write(senha);
                 bw.newLine();
             }
@@ -62,7 +62,7 @@ public class CriptografiaEscrita {
         }
     }
     
-    public static SenhasRune LeArquivo(SenhasRune senhas){
+    public static SenhasRune LeArquivo(SenhasRune senhas){//função para leitura do arquivo para memória
         try{
             File arquivo = new File("C:\\Users\\rapha\\OneDrive\\Documents\\Testes\\Cripto\\Arquivo de armazenamento de senhas");
             FileReader fr= new FileReader(arquivo);
@@ -73,7 +73,7 @@ public class CriptografiaEscrita {
             linha=br.readLine();
             while(linha!=null){
                 vals = linha.split(" ");
-                senhas.adicionaSenha(Descriptografa(vals[0]), Descriptografa(vals[1]));
+                senhas.adicionaSenha(Descriptografa(vals[0]), Descriptografa(vals[1]));//descriptografa os nomes e as senhas 
                 linha=br.readLine();
                 }
             br.close();
@@ -84,7 +84,7 @@ public class CriptografiaEscrita {
         }
         return senhas;
     }
-    public static void InicializaSenha(){
+    public static void InicializaSenha(){//função para criação da senha de login
         try{
             File arquivo= new File("C:\\Users\\rapha\\OneDrive\\Documents\\Testes\\Cripto\\login.txt");
             FileReader fr= new FileReader(arquivo);
@@ -94,8 +94,8 @@ public class CriptografiaEscrita {
             if(br.readLine()==null){
                 Scanner teclado=new Scanner(System.in);
                 System.out.println("Defina uma senha de login");
-                String log=teclado.nextLine();
-                log=CriptografiaEscrita.Criptografa(log);
+                String log=teclado.nextLine();//recebe a senha
+                log=CriptografiaEscrita.Criptografa(log);//criptografa a senha
                 bw.write(log);
             br.close();
             fr.close();
@@ -107,7 +107,7 @@ public class CriptografiaEscrita {
             System.out.println("Erro: "+e);
         }
     }
-        public static String getLogin(){
+        public static String getLogin(){//função que trás a senha de login para memória
         String login="";
         try{
             File arquivo= new File("C:\\Users\\rapha\\OneDrive\\Documents\\Testes\\Cripto\\login.txt");
@@ -123,7 +123,7 @@ public class CriptografiaEscrita {
         return login;
     }
         
-    public static String Criptografa(String nome,String senha){
+    public static String Criptografa(String nome,String senha){//função de criptografia(assinatura para senhas e nomes)
         String senha_codificada;
         String nome_codificado;
         nome_codificado= Base64.getEncoder().encodeToString(nome.getBytes());
