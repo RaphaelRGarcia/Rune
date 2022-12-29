@@ -71,7 +71,7 @@ public class CriptografiaEscrita {//classe de criptografia e escrita em arquivo
             String[] vals;
             SenhaRune senha=new SenhaRune();
             linha=br.readLine();
-            while(linha!=null){
+            while(arquivo.length()>0 && linha!=null){
                 vals = linha.split(" ");
                 senhas.adicionaSenha(Descriptografa(vals[0]), Descriptografa(vals[1]));//descriptografa os nomes e as senhas 
                 linha=br.readLine();
