@@ -8,7 +8,7 @@ import java.lang.String;
  *
  * @author rapha
  */
-public class SenhaRune {
+public class SenhaRune {//classe de senha
     private String senha;
     
     public SenhaRune(){
