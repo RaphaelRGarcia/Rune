@@ -43,7 +43,7 @@ public class CriptografiaEscrita {//classe de criptografia e escrita em arquivo
     
     public static void Salva(SenhasRune senhas){//salva alterações no arquivo texto
         try{
-            File arquivo = new File("C:\\Users\\rapha\\OneDrive\\Documents\\Testes\\Cripto\\Arquivo de armazenamento de senhas");
+            File arquivo = new File("#caminho arquivo");
             FileWriter fw;
             BufferedWriter bw;
             fw = new FileWriter(arquivo);
@@ -64,7 +64,7 @@ public class CriptografiaEscrita {//classe de criptografia e escrita em arquivo
     
     public static SenhasRune LeArquivo(SenhasRune senhas){//função para leitura do arquivo para memória
         try{
-            File arquivo = new File("C:\\Users\\rapha\\OneDrive\\Documents\\Testes\\Cripto\\Arquivo de armazenamento de senhas");
+            File arquivo = new File("#caminho arquivo");
             FileReader fr= new FileReader(arquivo);
             BufferedReader br= new BufferedReader(fr);
             String linha;
@@ -86,7 +86,7 @@ public class CriptografiaEscrita {//classe de criptografia e escrita em arquivo
     }
     public static void InicializaSenha(){//função para criação da senha de login
         try{
-            File arquivo= new File("C:\\Users\\rapha\\OneDrive\\Documents\\Testes\\Cripto\\login.txt");
+            File arquivo= new File("#caminho arquivo");
             FileReader fr= new FileReader(arquivo);
             BufferedReader br = new BufferedReader(fr);
             FileWriter fw = new FileWriter(arquivo,true);
@@ -110,7 +110,7 @@ public class CriptografiaEscrita {//classe de criptografia e escrita em arquivo
         public static String getLogin(){//função que trás a senha de login para memória
         String login="";
         try{
-            File arquivo= new File("C:\\Users\\rapha\\OneDrive\\Documents\\Testes\\Cripto\\login.txt");
+            File arquivo= new File("#caminho arquivo");
             FileReader fr= new FileReader(arquivo);
             BufferedReader br = new BufferedReader(fr);
             login=br.readLine();
